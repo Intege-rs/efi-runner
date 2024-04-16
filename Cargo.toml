@@ -4,3 +4,27 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+
+serde_json = "1.0.115"
+hcs-rs = { version = "0.9.1", features = ["bindings", "19h1", "schema", "utilities"] }
+winapi = "*"
+
+clap = { version = "4.5.4", features = ["derive"] }
+dunce = "1.0.4"
+
+[dependencies.tokio]
+version = "1.37.0"
+features = [
+    "windows-sys", "net",
+    "macros", "rt", "rt-multi-thread",
+    "time", "io-std", "io-util",
+    "sync"
+]
+
+[profile.release]
+opt-level = 3
+debug-assertions = false
+codegen-units = 1
+lto = true
+overflow-checks = false
+strip = "symbols"
